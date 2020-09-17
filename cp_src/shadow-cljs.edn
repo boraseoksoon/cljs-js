@@ -1,0 +1,14 @@
+;; shadow-cljs configuration
+{:source-paths
+ ["cljs"]
+
+ :dependencies
+ []
+
+ :builds
+ {:node {:target :node-library
+         :output-to "cljs_dist/node/index.js"
+         :exports {:hello node.core.fn/hello}}
+  :web {:target :node-library
+   :output-to "cljs_dist/web/index.js"
+	 :exports {:hello web.core.fn/hello}}}}

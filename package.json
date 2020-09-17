@@ -1,0 +1,44 @@
+{
+  "name": "cljs-js",
+  "version": "1.0.1112",
+  "description": "clojurescript <-> javascript made simple!",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest ./*.test.js",
+    "preinstall": "",
+    "postuninstall": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boraseoksoon/cljs-js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/boraseoksoon/cljs-js.git/issues"
+  },
+  "homepage": "https://github.com/boraseoksoon/cljs-js.git#readme",
+  "keywords": [
+    "clojure",
+    "clojurescript",
+    "javascript",
+    "interop",
+    "interoperability",
+    "API",
+    "shadow-cljs"
+  ],
+  "preferGlobal": true,
+  "bin": {
+    "cljs-js": "bin/cljs-js"
+  },
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "axios": "^0.18.0",
+    "minimist": "^1.2.0",
+    "ora": "^2.0.0"
+  },
+  "devDependencies": {
+    "jest": "^26.4.2",
+    "shadow-cljs": "^2.11.4"
+  }
+}
