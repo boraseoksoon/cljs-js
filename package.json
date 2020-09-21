@@ -1,6 +1,6 @@
 {
   "name": "cljs-js",
-  "version": "1.0.1112",
+  "version": "1.0.1123",
   "description": "clojurescript <-> javascript made simple!",
   "main": "index.js",
   "scripts": {

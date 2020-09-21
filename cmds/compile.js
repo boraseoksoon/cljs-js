@@ -21,8 +21,8 @@ module.exports = async (args) => {
   const spinner = ora().start()
 
   try {
-		await cmd('shadow-cljs compile node');
-		await cmd('shadow-cljs compile web');
+		await cmd('shadow-cljs release node');
+		await cmd('shadow-cljs release web');
 
     spinner.stop()
   } catch (err) {
