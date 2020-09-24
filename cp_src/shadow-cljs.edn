@@ -7,8 +7,10 @@
 
  :builds
  {:node {:target :node-library
-         :output-to "cljs_dist/node/index.js"
-         :exports {:hello node.core.fn/hello}}
-  :web {:target :node-library
-   :output-to "cljs_dist/web/index.js"
-	 :exports {:hello web.core.fn/hello}}}}
+         :output-to "cljs_dist/core/node/interop.js"
+         :exports {:interop cljs.core.fn/interop}}
+
+  :web {:target :browser
+        :output-dir "cljs_dist/core/web"
+        :asset-path "/js"
+        :modules {:interop {:entries [cljs.core.fn]}}}}}

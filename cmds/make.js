@@ -31,7 +31,7 @@ module.exports = async (args) => {
 
 	try {
 		let spinner = ora().start()
-		console.log(`.... 🙏🏿👏👏 Clojurescript <-> Javascript made simple!`)
+		console.log(`.... 🔥🔥 Clojurescript <-> Javascript made simple!`)
 		console.log(`Getting started,`)
 		spinner.stop()
 
@@ -41,6 +41,7 @@ module.exports = async (args) => {
 			console.log(`${fileName} is placed well`);
 		} else {
 			console.log(`${fileName} is required but seems to NOT be installed.`);
+			console.log(`cljs-js must need to work on a node.js project.`);
 			console.log(`npm init -y and try again.`);
 			spinner.stop()
 			return;
@@ -56,14 +57,8 @@ module.exports = async (args) => {
 
 		spinner = ora().start()
 		console.log(`.... Generating Clojurescript things to be able to interop with Javascript,`)
-		await cmd(`mkdir -p cljs && cd cljs && mkdir -p ${nodejs} && cd ${nodejs} && mkdir -p core`);
-		await cmd(`cd cljs && mkdir -p ${web} && cd ${web} && mkdir -p core`);
-		await cmd(`cp ${binPath}/cp_src/${nodejs}_fn.cljs ./cljs/${nodejs}/core`);
-		await cmd(`mv ./cljs/${nodejs}/core/${nodejs}_fn.cljs ./cljs/${nodejs}/core/fn.cljs`);
-
-		await cmd(`cp ${binPath}/cp_src/${web}_fn.cljs ./cljs/${web}/core`);
-		await cmd(`mv ./cljs/${web}/core/${web}_fn.cljs ./cljs/${web}/core/fn.cljs`);
-
+		await cmd(`mkdir -p cljs && cd cljs && mkdir -p cljs && cd cljs && mkdir -p core`);
+		await cmd(`cp ${binPath}/cp_src/fn.cljs ./cljs/cljs/core`);
 		await cmd(`cp ${binPath}/cp_src/shadow-cljs.edn ./`);
 		spinner.stop()
 
@@ -74,50 +69,19 @@ module.exports = async (args) => {
 		spinner.stop()
 		console.log(`👍🏻 Done compiling clojurescript!`)
 
-		console.log(`.... Generating sample interop.js to show interop cljs->js sample,`)
+		console.log(`.... Generating sample interop.js to show interop cljs<->js sample for Node.js platform,`)
 		await cmd(`cp ${binPath}/cp_src/interop.js ./`);
+		console.log(`.... Generating sample interop.html to show interop cljs<->js sample for Web browser,`)
+		await cmd(`cp ${binPath}/cp_src/interop.html ./`);
 
 		console.log(`💪🏻 All done!`)
+		console.log(`.... happy hacking with Clojurescript 🔥 immediately => ./cljs/cljs/core/fn.cljs`)
 		console.log(``)
 		console.log(``)
-		console.log(`try!`)
-		console.log(`node ./interop.js`)
-		console.log(`
-			From now on, all you need to focus is ..
-			1. Go to yourproject/cljs/node/core/fn.cljs for node.js or yourproject/cljs/web/core/fn.cljs for web project.
-			2. If you guess you've write some beautiful functions in fn.cljs, then type ''cljs-js compile''
-			3. Then, It will compile your Clojurescript files into optimized Javascripts files in yourproject/cljs_dist. 
-			
-			* Unfortunately, you should manually interop the rest of it currently whenever you change the codes and compile these while in the later version, hopefully I would like to add some features like auto generate interop codes and auto-compile features whenever saved if possible.
-
-			your project
-			├── cljs
-			│   ├── node
-			│   │   └── core
-			│   │       └── fn.cljs ==> where you write your Clojure code for Node.js.
-			│   └── web
-			│       └── core
-			│           └── fn.cljs ==> where you write your Clojure code for Web browser platform.
-			├── interop.js ==> where interop between cljs <=> js is done.
-			├── cljs_dist
-			│   ├── node
-			│   │   └── index.js ==> after ``cljs-js compile``, cljs/node/core/fn.cljs is compiled down into here.
-			│   └── web
-			│       └── index.js ==> after ``cljs-js compile``, cljs/web/core/fn.cljs is compiled down into here.
-			...
-			...
-			..
-		`)
-
-		console.log(`.... happy hacking 🔥 immediately for node.js => ./cljs/${nodejs}/core/fn.cljs`)
-		console.log(`.... happy hacking 🔥 immediately for web browser => ./cljs/${web}/core/fn.cljs`)
-		console.log(`To apply changes => cljs-js compile`)
-		console.log(`(auto-compile feature is going to be added soon using figwheel. 🙂)`)
-
-		spinner.stop()
+		console.log(`check ./interop.js and ./interop.html to see interop examples`)
+		console.log(`(auto-compile feature might be going to be added soon 🙂)`)
 
 	} catch (err) {
-		spinner.stop()
 		console.error(err)
 	}
 }
